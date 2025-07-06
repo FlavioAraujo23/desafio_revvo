@@ -1,0 +1,70 @@
+header .wrapper {
+  justify-content: space-between;
+  padding: 0rem 4.8125rem;
+  align-items: center;
+}
+
+nav {
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.user-info {
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+
+.user-wrapper {
+  align-items: center;
+  gap: 1.125rem;
+}
+
+input#search {
+  width: 18.875rem;
+  height: 2.8125rem;
+  font-size: 1rem;
+  background: #efefef;
+  color: #b1b1b1;
+  padding: 1.125rem;
+  border-radius: 1.625rem;
+  border: 1px solid #d3d3d3;
+}
+
+input#search:focus-visible {
+  outline: 0.0625rem solid #b1b1b1;
+}
+
+p.text-nav {
+  font-size: 0.75rem;
+  color: #acacac;
+  font-weight: 400;
+  line-height: normal;
+}
+
+p.username {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #606060;
+}
+
+span.divider {
+  width: 0.0625rem;
+  height: 3.125rem;
+  background: #efefef;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+i.icon.fa.fa-search.fa-fw {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  color: #919191;
+  transform: translateY(-50%);
+}
+
+.fa-caret-down {
+  color: #606060;
+}
