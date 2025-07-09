@@ -1,3 +1,7 @@
+<?php
+require "./db/database.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,6 +18,7 @@
 <body>
     <?php include "includes/header.php" ?>
     <?php include "./slide/slide.php" ?>
+    <?php include "./cursos/curso.php" ?>
     <?php include "includes/footer.php" ?>
 </body>
 

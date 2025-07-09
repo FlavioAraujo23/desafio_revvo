@@ -1,0 +1,80 @@
+main.main-section {
+  padding: 2rem 5rem;
+  background: #efefef;
+}
+
+h1.title {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  color: #545454;
+  font-weight: 700;
+}
+
+hr {
+  margin: 0.875rem 0 1.7rem 0;
+  border-color: #d3d3d3;
+}
+
+.grid {
+  --grid-max-col-count: 4;
+  --grid-min-col-size: 18.75rem; /* 300px minimo de largura */
+  --grid-max-col-size: 25rem; /* 400px maximo de largura */
+  --grid-gap: 1rem;
+
+  --grid-col-size-calc: calc(
+    (100% - var(--grid-gap) * (var(--grid-max-col-count) - 1)) /
+      var(--grid-max-col-count)
+  );
+
+  --grid-col-min-size-calc: max(
+    var(--grid-min-col-size),
+    var(--grid-col-size-calc)
+  );
+
+  gap: var(--grid-gap);
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--grid-col-min-size-calc), var(--grid-max-col-size))
+  );
+  justify-items: center;
+}
+
+.card {
+  max-width: 20rem;
+  max-height: 31.25rem;
+  min-height: 21.875rem;
+}
+
+.course-info {
+  background: #fff;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+h2.course-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #535353;
+}
+
+p.course-desc {
+  font-size: 1rem;
+  color: #919191;
+  font-weight: 400;
+  line-height: normal;
+}
+
+a.course-link {
+  background: #01a02a;
+  color: #fff;
+  padding: 0.875rem;
+  border-radius: 1.625rem;
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
