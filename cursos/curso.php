@@ -12,13 +12,13 @@ $stmt->close();
 <?php
 require_once 'includes/modal.php';
 
-$modalId = 'modalNovoCurso';
+$modalNovoCursoId = 'modalNovoCurso';
 
 ob_start();
 
-include 'adicionarCurso.php';
+include 'criarCursoForm.php';
 
-$modalContent = ob_get_clean();
+$modalNovoCursoContent = ob_get_clean();
 ?>
 
 <head>
@@ -32,17 +32,27 @@ $modalContent = ob_get_clean();
             <?php foreach ($cursos as $curso): ?>
                 <div class="card">
                     <img src="/cursos/<?= $curso['imagem'] ?>" alt="<?= $curso['titulo'] ?>" class="course-image">
+                    <a href="#" class="open-modal edit" data-target="modalEditarCurso<?= $curso['id'] ?>">
+                        <i class="fa-solid fa-pencil"></i>
+                    </a>
                     <div class="course-info">
                         <h2 class="course-title"><?= $curso['titulo'] ?></h2>
                         <p class="course-desc"><?= $curso['descricao'] ?></p>
                         <a href="<?= $curso['link'] ?>" class="course-link">Ver curso</a>
                     </div>
                 </div>
+
+                <?php
+                ob_start();
+                include 'editarCursoForm.php';
+                $modalEditarCursoContent = ob_get_clean();
+                renderModal("modalEditarCurso" . $curso['id'], $modalEditarCursoContent);
+                ?>
             <?php endforeach; ?>
             <a href="#" class="open-modal" data-target="modalNovoCurso">
                 <img src="../images/adicionar_curso.png" alt="" width="320" height="330" />
                 <a>
-                    <?php renderModal($modalId, $modalContent); ?>
+                    <?php renderModal($modalNovoCursoId, $modalNovoCursoContent); ?>
         </section>
     </section>
 
