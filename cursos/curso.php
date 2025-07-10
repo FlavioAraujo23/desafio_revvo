@@ -1,6 +1,25 @@
 <?php
-require "./MockData/cursosMock.php"
-    ?>
+require_once "./db/database.php";
+
+$stmt = $conn->prepare("SELECT * FROM cursos");
+$stmt->execute();
+$result = $stmt->get_result();
+
+$cursos = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+?>
+
+<?php
+require_once 'includes/modal.php';
+
+$modalId = 'modalNovoCurso';
+
+ob_start();
+
+include 'adicionarCurso.php';
+
+$modalContent = ob_get_clean();
+?>
 
 <head>
     <link rel="stylesheet" href="assets/css/course.css">
@@ -12,8 +31,7 @@ require "./MockData/cursosMock.php"
         <section class="courses-container grid">
             <?php foreach ($cursos as $curso): ?>
                 <div class="card">
-                    <img src="<?= $curso['imagem'] ?>" alt="<?= $curso['titulo'] ?>" class="course-image"
-                        style="max-width: 320px;">
+                    <img src="/cursos/<?= $curso['imagem'] ?>" alt="<?= $curso['titulo'] ?>" class="course-image">
                     <div class="course-info">
                         <h2 class="course-title"><?= $curso['titulo'] ?></h2>
                         <p class="course-desc"><?= $curso['descricao'] ?></p>
@@ -21,7 +39,10 @@ require "./MockData/cursosMock.php"
                     </div>
                 </div>
             <?php endforeach; ?>
-            <a href="#"><img src="../images/adicionar_curso.png" alt="" width="320" height="330"><a>
+            <a href="#" class="open-modal" data-target="modalNovoCurso">
+                <img src="../images/adicionar_curso.png" alt="" width="320" height="330" />
+                <a>
+                    <?php renderModal($modalId, $modalContent); ?>
         </section>
     </section>
 
