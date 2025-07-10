@@ -1,6 +1,13 @@
 <?php
-require "./MockData/mockSlides.php"
-    ?>
+require_once "./db/database.php";
+
+$stmt = $conn->prepare("SELECT * FROM slides");
+$stmt->execute();
+$result = $stmt->get_result();
+
+$slides = $result->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,7 +22,7 @@ require "./MockData/mockSlides.php"
             <section class="slider-wrapper" id="sliderWrapper">
                 <?php foreach ($slides as $slide): ?>
                     <div class="slide">
-                        <img src="<?= $slide['imagem'] ?>" alt="<?= $slide['titulo'] ?>" />
+                        <img src="/slide/<?= $slide['imagem'] ?>" alt="<?= $slide['titulo'] ?>" />
                         <div class="slide-details">
                             <h2><?= $slide['titulo'] ?></h2>
                             <p><?= $slide['descricao'] ?></p>
