@@ -13,10 +13,25 @@ $stmt = $conn->prepare("DELETE FROM slides WHERE id = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {
-    echo "Slide excluido com sucesso";
-    header("Location: /");
+    $toast = [
+        'text' => 'Slide excluido com sucesso!',
+        'type' => 'success',
+        'duration' => 4000
+    ];
+    setcookie('toast', json_encode($toast), time() + 10, '/');
+
+    header('Location: /');
+    exit;
 } else {
-    echo "Erro ao excluir Slide" . $stmt->error;
+    $toast = [
+        'text' => "Erro ao excluir Slide" . $stmt->error,
+        'type' => 'error',
+        'duration' => 4000
+    ];
+    setcookie('toast', json_encode($toast), time() + 10, '/');
+
+    header('Location: /');
+    exit;
 }
 
 ?>

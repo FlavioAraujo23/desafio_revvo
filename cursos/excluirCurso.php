@@ -13,10 +13,25 @@ $stmt = $conn->prepare("DELETE FROM cursos WHERE id = ?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {
-    echo "Curso excluido com sucesso";
-    header("Location: /");
+    $toast = [
+        'text' => 'Curso excluido com sucesso!',
+        'type' => 'success',
+        'duration' => 4000
+    ];
+    setcookie('toast', json_encode($toast), time() + 10, '/');
+
+    header('Location: /');
+    exit;
 } else {
-    echo "Erro ao excluir curso" . $stmt->error;
+    $toast = [
+        'text' => "Erro ao excluir curso" . $stmt->error,
+        'type' => 'error',
+        'duration' => 4000
+    ];
+    setcookie('toast', json_encode($toast), time() + 10, '/');
+
+    header('Location: /');
+    exit;
 }
 
 ?>

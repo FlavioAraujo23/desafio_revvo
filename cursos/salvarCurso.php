@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require '../db/database.php';
 
@@ -19,8 +20,27 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     if (move_uploaded_file($nomeTemp, $nomeFinal)) {
         $stmt = $conn->prepare("INSERT INTO cursos (imagem, titulo, descricao, link) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $nomeFinal, $titulo, $descricao, $link);
-        $stmt->execute();
-        echo "curso salvo com sucesso!";
+        if ($stmt->execute()) {
+            $toast = [
+                'text' => 'Curso salvo com sucesso!',
+                'type' => 'success',
+                'duration' => 4000
+            ];
+            setcookie('toast', json_encode($toast), time() + 10, '/');
+
+            header('Location: /');
+            exit;
+        } else {
+            $toast = [
+                'text' => 'Erro ao salvar o curso' . $stmt->error,
+                'type' => 'error',
+                'duration' => 4000
+            ];
+            setcookie('toast', json_encode($toast), time() + 10, '/');
+
+            header('Location: /');
+            exit;
+        }
     }
 
 }

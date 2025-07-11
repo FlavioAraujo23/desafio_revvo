@@ -18,8 +18,27 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     if (move_uploaded_file($nomeTemp, $nomeFinal)) {
         $stmt = $conn->prepare("INSERT INTO slides (imagem, titulo, descricao, link) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $nomeFinal, $titulo, $descricao, $link);
-        $stmt->execute();
-        echo "Slide salvo com sucesso!";
+        if ($stmt->execute()) {
+            $toast = [
+                'text' => 'Slide salvo com sucesso!',
+                'type' => 'success',
+                'duration' => 4000
+            ];
+            setcookie('toast', json_encode($toast), time() + 10, '/');
+
+            header('Location: /');
+            exit;
+        } else {
+            $toast = [
+                'text' => 'Erro ao salvar o Slide' . $stmt->error,
+                'type' => 'error',
+                'duration' => 4000
+            ];
+            setcookie('toast', json_encode($toast), time() + 10, '/');
+
+            header('Location: /');
+            exit;
+        }
     }
 
 }

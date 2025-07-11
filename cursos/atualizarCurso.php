@@ -33,11 +33,25 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] !== UPLOAD_ERR_NO_FIL
                 unlink($imagemAntiga);
             }
         } else {
-            echo "Erro ao salvar nova imagem.";
+            $toast = [
+                'text' => "Erro ao salvar nova imagem.",
+                'type' => 'error',
+                'duration' => 4000
+            ];
+            setcookie('toast', json_encode($toast), time() + 10, '/');
+
+            header('Location: /');
             exit;
         }
     } else {
-        echo "Erro ao fazer upload da imagem: código " . $_FILES['imagem']['error'];
+        $toast = [
+            'text' => "Erro ao fazer upload da imagem: código " . $_FILES['imagem']['error'],
+            'type' => 'error',
+            'duration' => 4000
+        ];
+        setcookie('toast', json_encode($toast), time() + 10, '/');
+
+        header('Location: /');
         exit;
     }
 } else {
@@ -47,10 +61,24 @@ if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] !== UPLOAD_ERR_NO_FIL
 $stmt = $conn->prepare('UPDATE cursos SET titulo = ?, descricao = ?, link = ?, imagem = ? WHERE id = ?');
 $stmt->bind_param('ssssi', $titulo, $descricao, $link, $novaImagem, $id);
 if ($stmt->execute()) {
-    echo "Curso atualizado com sucesso!";
+    $toast = [
+        'text' => 'Curso atualizado com sucesso!',
+        'type' => 'success',
+        'duration' => 4000
+    ];
+    setcookie('toast', json_encode($toast), time() + 10, '/');
+
+    header('Location: /');
     exit;
 } else {
-    echo "Erro ao atualizar curso" . $stmt->error;
+    $toast = [
+        'text' => "Erro ao atualizar curso" . $stmt->error,
+        'type' => 'error',
+        'duration' => 4000
+    ];
+    setcookie('toast', json_encode($toast), time() + 10, '/');
+
+    header('Location: /');
     exit;
 }
 

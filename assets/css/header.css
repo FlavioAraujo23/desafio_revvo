@@ -55,6 +55,7 @@ span.divider {
 
 .input-wrapper {
   position: relative;
+  height: 46px;
 }
 
 i.icon.fa.fa-search.fa-fw {
