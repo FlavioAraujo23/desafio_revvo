@@ -26,3 +26,10 @@ document.addEventListener("click", function (e) {
     e.target.style.display = "none";
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!localStorage.getItem("hasVisited")) {
+    document.getElementById("welcomeModal").style.display = "block";
+    localStorage.setItem("hasVisited", "true");
+  }
+});

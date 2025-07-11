@@ -23,6 +23,20 @@ require "./includes/modal.php"
     <?php include "./cursos/curso.php" ?>
     <?php include "includes/footer.php" ?>
     <script src="./assets/js/modal.js"></script>
+    <?php
+    // Renderiza o modal normalmente
+    $content = '
+      <div class="container-modal">
+        <img src="/images/modal_image.png" />
+        <div class="info-modal">
+          <h2>title</h2>
+          <p>text</p>
+          <a><link/a>
+        </div>
+      </div>
+    ';
+    renderModal('welcomeModal', $content);
+    ?>
 </body>
 
 </html>

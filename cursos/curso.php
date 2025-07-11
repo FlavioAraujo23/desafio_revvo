@@ -38,7 +38,7 @@ $modalNovoCursoContent = ob_get_clean();
                     <div class="course-info">
                         <h2 class="course-title"><?= $curso['titulo'] ?></h2>
                         <p class="course-desc"><?= $curso['descricao'] ?></p>
-                        <a href="<?= $curso['link'] ?>" class="course-link">Ver curso</a>
+                        <a href="<?= $curso['link'] ?>" class="course-link" target="_blank">Ver curso</a>
                     </div>
                 </div>
 

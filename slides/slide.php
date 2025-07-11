@@ -41,7 +41,7 @@ $modalNovoSlideContent = ob_get_clean();
                         <div class="slide-details">
                             <h2><?= $slide['titulo'] ?></h2>
                             <p><?= $slide['descricao'] ?></p>
-                            <a href="<?= $slide['link'] ?>">Ver cursos</a>
+                            <a href="<?= $slide['link'] ?>" target="_blank">Ver cursos</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

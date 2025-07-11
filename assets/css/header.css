@@ -68,3 +68,24 @@ i.icon.fa.fa-search.fa-fw {
 .fa-caret-down {
   color: #606060;
 }
+
+@media (max-width: 767px) {
+  header .wrapper {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  img.logo {
+    width: 8rem;
+  }
+
+  span.divider {
+    display: none;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

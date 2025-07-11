@@ -111,3 +111,9 @@ a.course-link {
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 767px) {
+  main.main-section {
+    padding: 1rem;
+  }
+}

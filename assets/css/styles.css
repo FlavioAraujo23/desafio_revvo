@@ -41,3 +41,131 @@ body {
   cursor: pointer;
   color: red;
 }
+
+.form-title {
+  font-size: 2rem;
+  color: #545454;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.btn-primary {
+  background: #01a02a;
+  border: none;
+  padding: 1rem;
+  border-radius: 26px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.label-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #545454;
+}
+
+input,
+textarea {
+  border: 1px solid #545454;
+  border-radius: 26px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.delete {
+  position: absolute;
+  top: 2.5rem;
+  right: 15%;
+  font-size: 1.5rem;
+  color: red;
+}
+
+#welcomeModal .modal-content {
+  top: 20%;
+  padding: 0px;
+  margin: 0 auto;
+}
+
+#welcomeModal img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 26px;
+  border-top-right-radius: 26px;
+}
+
+.info-modal {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.close-modal {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: -14px;
+  right: -15px;
+  font-size: 3rem;
+  cursor: pointer;
+  color: red;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-modal h2 {
+  font-size: 2rem;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.info-modal {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-modal a {
+  background: #1da2da;
+  color: #fff;
+  padding: 0.875rem;
+  border-radius: 26px;
+  width: 320px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .form-title {
+    font-size: 1rem !important;
+  }
+
+  .delete {
+    top: 2rem;
+    font-size: 1rem;
+  }
+
+  .label-text {
+    font-size: 0.875rem;
+  }
+}

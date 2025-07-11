@@ -148,3 +148,15 @@ button.next {
 .slide:hover .add {
   right: 60px;
 }
+
+@media (max-width: 767px) {
+  .slide-details {
+    top: 20%;
+    margin-left: 2rem;
+  }
+
+  button.prev,
+  button.next {
+    font-size: 3rem;
+  }
+}

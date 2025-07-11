@@ -12,7 +12,7 @@
   <header>
     <div class="wrapper d-flex">
       <img src="../images/Logo_LEO.png" alt="Logo Leo" class="logo">
-      <nav class="d-flex">
+      <nav class="d-flex nav">
         <div class="input-wrapper">
           <input type="search" id="search" placeholder="Pesquisar cursos">
           <i class="icon fa fa-search fa-fw " aria-hidden="true"></i>

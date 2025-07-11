@@ -66,3 +66,21 @@ section.copy {
   font-weight: 500;
   margin-left: 1rem;
 }
+
+@media (max-width: 767px) {
+  .wrapper-footer {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .footer-column {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-section {
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0px 0px;
+  }
+}
