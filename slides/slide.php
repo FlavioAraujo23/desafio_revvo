@@ -1,5 +1,7 @@
 <?php
 require_once "./db/database.php";
+require_once 'includes/modal.php';
+
 
 $stmt = $conn->prepare("SELECT * FROM slides");
 $stmt->execute();
@@ -22,7 +24,11 @@ $stmt->close();
             <section class="slider-wrapper" id="sliderWrapper">
                 <?php foreach ($slides as $slide): ?>
                     <div class="slide">
-                        <img src="/slide/<?= $slide['imagem'] ?>" alt="<?= $slide['titulo'] ?>" />
+                        <img src="/slides/<?= $slide['imagem'] ?>" alt="<?= $slide['titulo'] ?>" />
+                        <a href="#" class="open-modal edit" data-target="modalEditarSlide<?= $slide['id'] ?>">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+
                         <div class="slide-details">
                             <h2><?= $slide['titulo'] ?></h2>
                             <p><?= $slide['descricao'] ?></p>
@@ -45,8 +51,17 @@ $stmt->close();
                 <span class="bullet" onclick="vaParaOSlide( <?= $index ?>)"></span>
             <?php endforeach; ?>
         </section>
+
+        <?php
+        foreach ($slides as $slide) {
+            ob_start();
+            include 'editarSlideForm.php';
+            $modalContent = ob_get_clean();
+            renderModal("modalEditarSlide" . $slide['id'], $modalContent);
+        }
+        ?>
     </section>
-    <script src="slide/slide.js"></script>
+    <script src="slides/slide.js"></script>
 </body>
 
 </html>

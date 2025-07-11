@@ -19,7 +19,7 @@ require "./includes/modal.php"
 
 <body>
     <?php include "includes/header.php" ?>
-    <?php include "./slide/slide.php" ?>
+    <?php include "./slides/slide.php" ?>
     <?php include "./cursos/curso.php" ?>
     <?php include "includes/footer.php" ?>
     <script src="./assets/js/modal.js"></script>
