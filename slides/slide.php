@@ -28,23 +28,39 @@ $modalNovoSlideContent = ob_get_clean();
     <section class="main-container">
         <section class="slider-container">
             <section class="slider-wrapper" id="sliderWrapper">
-                <?php foreach ($slides as $slide): ?>
+                <?php if (empty($slides)): ?>
                     <div class="slide">
-                        <img src="/slides/<?= $slide['imagem'] ?>" alt="<?= $slide['titulo'] ?>" />
-                        <a href="#" class="open-modal edit" data-target="modalEditarSlide<?= $slide['id'] ?>">
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
+                        <img src="/images/imagem-padrao.jpg" alt="Desafio Revvo" />
                         <a href="#" class="open-modal add" data-target="modalNovoSlide">
                             <i class="fa-solid fa-plus"></i>
                         </a>
                         <?php renderModal($modalNovoSlideId, $modalNovoSlideContent); ?>
                         <div class="slide-details">
-                            <h2><?= $slide['titulo'] ?></h2>
-                            <p><?= $slide['descricao'] ?></p>
-                            <a href="<?= $slide['link'] ?>" target="_blank">Ver cursos</a>
+                            <h2>Seja Bem vindo!</h2>
+                            <p>Essa é uma plataforma desenvolvida para o Desafio Revvo!</p>
+                            <a href="#" target="_blank">Ver cursos</a>
                         </div>
                     </div>
-                <?php endforeach; ?>
+
+                <?php else: ?>
+                    <?php foreach ($slides as $slide): ?>
+                        <div class="slide">
+                            <img src="/slides/<?= $slide['imagem'] ?>" alt="<?= $slide['titulo'] ?>" />
+                            <a href="#" class="open-modal edit" data-target="modalEditarSlide<?= $slide['id'] ?>">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                            <a href="#" class="open-modal add" data-target="modalNovoSlide">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                            <?php renderModal($modalNovoSlideId, $modalNovoSlideContent); ?>
+                            <div class="slide-details">
+                                <h2><?= $slide['titulo'] ?></h2>
+                                <p><?= $slide['descricao'] ?></p>
+                                <a href="<?= $slide['link'] ?>" target="_blank">Ver cursos</a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </section>
 
             <button class="prev" onclick="trocaSlide('prev')">
