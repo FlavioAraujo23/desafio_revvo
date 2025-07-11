@@ -1,5 +1,9 @@
 <h2>Editar Slide: <?= $slide['titulo'] ?></h2>
 <form method="post" action="/slides/atualizarSlide.php" enctype="multipart/form-data">
+    <a href="/slides/excluirSlide.php?id=<?= $slide['id'] ?>"
+        onclick="confirm('Tem certeza que deseja excluir o slide <?= $curso['titulo'] ?>? \nEssa ação é irreversivel!')">
+        <i class="fa-solid fa-trash"></i>
+    </a>
     <input type="hidden" name="id" value="<?= $slide['id'] ?>">
     <label>Título:</label>
     <input type="text" name="titulo" value="<?= $slide['titulo'] ?>">
