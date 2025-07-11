@@ -9,6 +9,12 @@ $result = $stmt->get_result();
 
 $slides = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
+
+$modalNovoSlideId = 'modalNovoSlide';
+ob_start();
+include 'criarSlideForm.php';
+$modalNovoSlideContent = ob_get_clean();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +34,10 @@ $stmt->close();
                         <a href="#" class="open-modal edit" data-target="modalEditarSlide<?= $slide['id'] ?>">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
-
+                        <a href="#" class="open-modal add" data-target="modalNovoSlide">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                        <?php renderModal($modalNovoSlideId, $modalNovoSlideContent); ?>
                         <div class="slide-details">
                             <h2><?= $slide['titulo'] ?></h2>
                             <p><?= $slide['descricao'] ?></p>

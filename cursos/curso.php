@@ -51,8 +51,8 @@ $modalNovoCursoContent = ob_get_clean();
             <?php endforeach; ?>
             <a href="#" class="open-modal" data-target="modalNovoCurso">
                 <img src="../images/adicionar_curso.png" alt="" width="320" height="330" />
-                <a>
-                    <?php renderModal($modalNovoCursoId, $modalNovoCursoContent); ?>
+            </a>
+            <?php renderModal($modalNovoCursoId, $modalNovoCursoContent); ?>
         </section>
     </section>
 
