@@ -28,8 +28,9 @@ function create($type, $data = []): array
         $nomeFinal = "uploads/" . uniqid() . "-" . $_FILES['imagem']["name"];
 
         // Cria a pasta caso ela não exista
-        if (!is_dir('uploads')) {
-            mkdir('uploads', 0755, true);
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/' . ($type === "Slide" ? 'slides' : 'cursos') . '/uploads';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
         }
 
         if (move_uploaded_file($nomeTemp, $nomeFinal)) {

@@ -6,8 +6,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./cursos/uploads:/var/www/html/cursos/uploads
-      - ./slides/uploads:/var/www/html/slides/uploads
+      - uploads_cursos:/var/www/html/cursos/uploads
+      - uploads_slides:/var/www/html/slides/uploads
     environment:
       - DB_HOST=${DB_HOST:-mysql}
       - DB_PORT=${DB_PORT:-3306}
@@ -36,6 +36,8 @@ services:
 
 volumes:
   mysql_data:
+  uploads_cursos:
+  uploads_slides:
 
 networks:
   app-network:

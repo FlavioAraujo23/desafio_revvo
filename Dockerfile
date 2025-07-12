@@ -11,18 +11,17 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Criar diretórios de upload
-RUN mkdir -p /var/www/html/cursos/uploads /var/www/html/slides/uploads
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html/cursos/uploads /var/www/html/slides/uploads
-
 # Copiar arquivos do projeto
 COPY . /var/www/html/
 
-# Configurar permissões
+# Copiar configuração do PHP
+COPY php.ini /usr/local/etc/php/php.ini
+
+# Criar diretórios de upload com permissões corretas
+RUN mkdir -p /var/www/html/cursos/uploads /var/www/html/slides/uploads
 RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 644 /var/www/html
-RUN chmod -R 755 /var/www/html/cursos/uploads /var/www/html/slides/uploads
+RUN chmod -R 755 /var/www/html
+RUN chmod -R 777 /var/www/html/cursos/uploads /var/www/html/slides/uploads
 
 # Configuração do Apache para aceitar .htaccess
 RUN echo '<Directory /var/www/html>\n\
@@ -33,4 +32,10 @@ RUN echo '<Directory /var/www/html>\n\
 
 RUN a2enconf override
 
+# Copiar e configurar script de entrada
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 80
+
+ENTRYPOINT ["/entrypoint.sh"]
