@@ -1,3 +1,5 @@
 config.env
-*.png
-*jpg
+
+/slides/uploads
+
+/cursos/uploads
