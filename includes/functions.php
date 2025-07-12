@@ -2,12 +2,20 @@
 
 require '../db/database.php';
 
+function verificaType($type): bool
+{
+    return is_string($type) && in_array(trim($type), ["Slide", "Curso"], true);
+}
+
 function create($type, $data = []): array
 {
     global $conn;
 
-    if (!is_string($type) || !in_array(trim($type), ["Slide", "Curso"], true)) {
-        return ["status" => 'error', "mensagem" => "Tipo inválido"];
+    if (!verificaType($type)) {
+        return [
+            "status" => 'error',
+            "mensagem" => "Tipo deve ser 'Slide' ou 'Curso'"
+        ];
     }
 
     $titulo = $data["titulo"];
@@ -56,11 +64,16 @@ function create($type, $data = []): array
     ];
 }
 
-
-
 function update($type, $data = [], $id): array
 {
     global $conn;
+
+    if (!verificaType($type)) {
+        return [
+            "status" => 'error',
+            "mensagem" => "Tipo deve ser 'Slide' ou 'Curso'"
+        ];
+    }
 
     $query = $type === "Slide" ? "SELECT imagem FROM slides WHERE id = ?" : "SELECT imagem FROM cursos WHERE id = ?";
     $stmt = $conn->prepare($query);
@@ -114,14 +127,48 @@ function update($type, $data = [], $id): array
         } else {
             return [
                 "status" => 'error',
-                "mensagem" => "Erro ao atualizar o" . $type . ":" . $stmt->error
+                "mensagem" => "Erro ao atualizar o " . $type . ":" . $stmt->error
             ];
         }
     } catch (Exception $e) {
         return [
             "status" => 'error',
-            "mensagem" => "Erro ao atualizar o" . $type . ":" . $e->getMessage(),
+            "mensagem" => "Erro ao atualizar o " . $type . ":" . $e->getMessage(),
         ];
     }
 }
+
+function delete($type, $id): array
+{
+    global $conn;
+
+    if (!verificaType($type)) {
+        return [
+            "status" => 'error',
+            "mensagem" => "Tipo deve ser 'Slide' ou 'Curso'"
+        ];
+    }
+    try {
+        $query = $type === "Slide" ? "DELETE FROM slides WHERE id = ?" : "DELETE FROM cursos WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        if ($stmt->execute()) {
+            return [
+                "status" => "success",
+                "mensagem" => $type . " excluido com sucesso!",
+            ];
+        } else {
+            return [
+                "status" => 'error',
+                "mensagem" => "Erro ao excluir o " . $type . ":" . $stmt->error
+            ];
+        }
+    } catch (Exception $e) {
+        return [
+            "status" => 'error',
+            "mensagem" => "Erro ao excluir o " . $type . ":" . $e->getMessage(),
+        ];
+    }
+}
+
 ?>

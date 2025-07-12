@@ -1,37 +1,19 @@
 <?php
 
-require '../db/database.php';
-
-if (!isset($_GET['id'])) {
-    echo "Erro ao excluir slide";
-    exit;
-}
+require "../includes/functions.php";
 
 $id = $_GET["id"];
 
-$stmt = $conn->prepare("DELETE FROM slides WHERE id = ?");
-$stmt->bind_param("i", $id);
+$res = delete('Slide', $id);
 
-if ($stmt->execute()) {
-    $toast = [
-        'text' => 'Slide excluido com sucesso!',
-        'type' => 'success',
-        'duration' => 4000
-    ];
-    setcookie('toast', json_encode($toast), time() + 10, '/');
+$toast = [
+    'text' => $res['mensagem'],
+    'type' => $res['status'],
+    'duration' => 4000
+];
+setcookie('toast', json_encode($toast), time() + 10, '/');
 
-    header('Location: /');
-    exit;
-} else {
-    $toast = [
-        'text' => "Erro ao excluir Slide" . $stmt->error,
-        'type' => 'error',
-        'duration' => 4000
-    ];
-    setcookie('toast', json_encode($toast), time() + 10, '/');
-
-    header('Location: /');
-    exit;
-}
+header('Location: /');
+exit;
 
 ?>
