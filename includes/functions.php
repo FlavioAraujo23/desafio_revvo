@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ERROR | E_PARSE); // Suprimir warnings
+ini_set('display_errors', 0); // Não mostrar erros na tela
 
 require '../db/database.php';
 
@@ -33,7 +35,10 @@ function create($type, $data = []): array
             mkdir($uploadDir, 0777, true);
         }
 
-        if (move_uploaded_file($nomeTemp, $nomeFinal)) {
+        // Caminho completo para move_uploaded_file 
+        $caminhoCompleto = $uploadDir . '/' . basename($nomeFinal);
+
+        if (move_uploaded_file($nomeTemp, $caminhoCompleto)) {
             try {
                 $query = $type === "Slide" ? "INSERT INTO slides (imagem, titulo, descricao, link) VALUES (?, ?, ?, ?)" : "INSERT INTO cursos (imagem, titulo, descricao, link) VALUES (?, ?, ?, ?)";
                 $stmt = $conn->prepare($query);
@@ -94,7 +99,11 @@ function update($type, $data = [], $id): array
             $nomeTemp = $_FILES['imagem']['tmp_name'];
             $nomeFinal = "uploads/" . uniqid() . "-" . basename($_FILES['imagem']['name']);
 
-            if (move_uploaded_file($nomeTemp, $nomeFinal)) {
+            // Caminho completo para upload 
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/' . ($type === "Slide" ? 'slides' : 'cursos') . '/uploads';
+            $caminhoCompleto = $uploadDir . '/' . basename($nomeFinal);
+
+            if (move_uploaded_file($nomeTemp, $caminhoCompleto)) {
                 $novaImagem = $nomeFinal;
 
                 // Remove a imagem antiga
