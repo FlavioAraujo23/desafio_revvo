@@ -4,7 +4,8 @@ Plataforma de cursos online desenvolvida como parte do processo seletivo da Revv
 
 ## 👨‍💻 Desenvolvedor
 
-**[Flávio Lopes de Araújo]**
+**Flávio Lopes de Araújo**
+
 - GitHub: [@FlavioAraujo23](https://github.com/FlavioAraujo23)
 - LinkedIn: [Flávio Araújo](https://linkedin.com/in/flavio23)
 - Email: flaviolopes1027@gmail.com
@@ -14,6 +15,7 @@ Plataforma de cursos online desenvolvida como parte do processo seletivo da Revv
 Sistema web responsivo para gerenciamento de cursos online com as seguintes funcionalidades:
 
 ### ✨ Funcionalidades
+
 - **CRUD de Cursos**: Criar, editar, visualizar e excluir cursos
 - **CRUD de Slides**: Gerenciar slideshow da página inicial
 - **Upload de Imagens**: Sistema de upload para cursos e slides
@@ -21,6 +23,7 @@ Sistema web responsivo para gerenciamento de cursos online com as seguintes func
 - **Design Responsivo**: Adaptável a diferentes dispositivos
 
 ### 🛠️ Tecnologias
+
 - **Backend**: PHP puro (sem frameworks)
 - **Frontend**: HTML5, CSS3, JavaScript vanilla
 - **Banco**: MySQL com MySQLi
@@ -29,11 +32,13 @@ Sistema web responsivo para gerenciamento de cursos online com as seguintes func
 ## ⚙️ Configuração
 
 1. **Clone o repositório**
+
 ```bash
-git clone https://github.com/seu-usuario/desafio_revvo.git
+git clone https://github.com/FlavioAraujo23/desafio_revvo.git
 ```
 
 2. **Configure o banco (config.env)**
+
 ```ini
 host=localhost
 port=3306
@@ -43,32 +48,35 @@ pass=sua_senha
 ```
 
 3. **Crie as tabelas**
+
 ```sql
 CREATE TABLE cursos (
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    titulo VARCHAR(255), 
-    descricao TEXT, 
-    link VARCHAR(255), 
-    imagem VARCHAR(255), 
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255),
+    descricao TEXT,
+    link VARCHAR(255),
+    imagem VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE slides (
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    titulo VARCHAR(255), 
-    descricao TEXT, 
-    link VARCHAR(255), 
-    imagem VARCHAR(255), 
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255),
+    descricao TEXT,
+    link VARCHAR(255),
+    imagem VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
 4. **Defina permissões**
+
 ```bash
 chmod 755 cursos/uploads slides/uploads
 ```
 
 ## 📋 Requisitos Atendidos
+
 - ✅ PHP puro (sem frameworks)
 - ✅ CRUD completo para cursos e slides
 - ✅ Sistema de upload de imagens
@@ -77,4 +85,5 @@ chmod 755 cursos/uploads slides/uploads
 - ✅ Grid adaptativo para diferentes resoluções
 
 ---
-*Desenvolvido para o processo seletivo Revvo - 2025*
+
+_Desenvolvido para o processo seletivo Revvo - 2025_

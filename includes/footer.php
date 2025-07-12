@@ -26,9 +26,9 @@
                 <div class="footer-column d-flex">
                     <h2 class="footer-title">// Redes sociais</h2>
                     <div class="socials d-flex">
-                        <a href="" class="d-flex"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="" class="d-flex"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="" class="d-flex"><i class="fa-brands fa-pinterest-p"></i></a>
+                        <a href="#" class="d-flex"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="d-flex"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="d-flex"><i class="fa-brands fa-pinterest-p"></i></a>
                     </div>
 
                 </div>
