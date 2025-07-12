@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./cursos/uploads:/var/www/html/cursos/uploads
+      - ./slides/uploads:/var/www/html/slides/uploads
+    environment:
+      - DB_HOST=${DB_HOST:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_NAME=${DB_NAME:-desafio_revvo}
+      - DB_USER=${DB_USER:-root}
+      - DB_PASS=${DB_PASS:-password}
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:-password}
+      MYSQL_DATABASE: ${DB_NAME:-desafio_revvo}
+      MYSQL_USER: ${DB_USER:-user}
+      MYSQL_PASSWORD: ${DB_PASS:-password}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge

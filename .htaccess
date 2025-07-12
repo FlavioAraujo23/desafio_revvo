@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Redirecionar para index.php se o arquivo não existir
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Permitir acesso a arquivos CSS, JS e imagens
+RewriteCond %{REQUEST_FILENAME} \.(css|js|png|jpg|jpeg|gif|ico|svg)$ [NC]
+RewriteRule ^(.*)$ - [L]
+
+# Configurações de segurança
+<Files "config.env">
+    Order allow,deny
+    Deny from all
+</Files>
