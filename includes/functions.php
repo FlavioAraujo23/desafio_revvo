@@ -9,7 +9,7 @@ function verificaType($type): bool
     return is_string($type) && in_array(trim($type), ["Slide", "Curso"], true);
 }
 
-function create($type, $data = []): array
+function create($type, $data): array
 {
     global $conn;
 
@@ -70,7 +70,7 @@ function create($type, $data = []): array
     ];
 }
 
-function update($type, $data = [], $id): array
+function update($type, $data, $id): array
 {
     global $conn;
 
