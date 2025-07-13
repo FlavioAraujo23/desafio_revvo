@@ -6,6 +6,8 @@ Plataforma de cursos online desenvolvida como parte do processo seletivo da Revv
 
 **Flávio Lopes de Araújo**
 
+Realizei o deploy do projeto aqui => [Link do projeto](http://rcs8ko0w44cwk4kc4g8c00k4.5.161.118.156.sslip.io/)
+
 - GitHub: [@FlavioAraujo23](https://github.com/FlavioAraujo23)
 - LinkedIn: [Flávio Araújo](https://linkedin.com/in/flavio23)
 - Email: flaviolopes1027@gmail.com
